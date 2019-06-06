@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!--Font Awesome-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+    crossorigin="anonymous">
+
+  <title>Citations de Dévs</title>
+</head>
+
+<body class="bg-dark">
+  <div class="container my-5">
+    <div class="card">
+      <div class="card-header bg-info text-white">
+        Citation
+        <a href="#" id="btnDisplayAddForm" class="btn btn-sm btn-secondary float-right">Ajouter une citation</a>
+      </div>
+      <div class="card-body">
+        <blockquote class="blockquote mb-0">
+          <p id="quote"></p>
+          <footer class="blockquote-footer" id="author"></footer>
+        </blockquote>
+      </div>
+    </div>
+
+    <nav aria-label="Pagination" class="my-3">
+      <ul class="pagination pagination-lg justify-content-center">
+        <li class="page-item">
+          <a class="page-link bg-info text-white" id="nav-first" href="#" aria-label="Previous">
+            <span aria-hidden="true">&#10218;</span>
+            <span class="sr-only">First</span>
+          </a>
+        </li>
+        <li class="page-item">
+          <a class="page-link bg-info text-white" id="nav-prev" href="#" aria-label="Previous">
+            <span aria-hidden="true">&#10216;</span>
+            <span class="sr-only">Previous</span>
+          </a>
+        </li>
+        <li class="page-item">
+          <a class="page-link bg-info text-white" id="nav-next" href="#" aria-label="Next">
+            <span aria-hidden="true">&#10217;</span>
+            <span class="sr-only">Next</span>
+          </a>
+        </li>
+        <li class="page-item">
+          <a class="page-link bg-info text-white" id="nav-last" href="#" aria-label="Next">
+            <span aria-hidden="true">&#10219;</span>
+            <span class="sr-only">Last</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="card d-none" id="divAddQuote">
+      <div class="card-header bg-info text-white d-flex justify-content-between">
+        Citation
+        <div class="btn" id="closeForm"><i class="fas fa-times"></i></div>
+      </div>
+      <div class="card-body">
+        <form class="my-3" action="" method="POST" id="addQuoteForm">
+          <div class="form-group">
+            <label for="input-quote">Citation</label>
+            <input type="text" class="form-control" name="quote" id="input-quote">
+          </div>
+          <div class="form-group">
+            <label for="input-author">Auteur</label>
+            <input type="text" class="form-control" name="author" id="input-author">
+          </div>
+          <p id="errorMsg" class="d-none">Vous devez remplir les 2 champs</p>
+          <button type="submit" class="btn btn-secondary btn-block">Ajouter</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script> -->
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+  <!-- Inclusion des fichiers JS -->
+  <!-- <script src="js/quote.js"></script> -->
+  <script src="js/appV2.js"></script>
+</body>
+
+</html>
