@@ -1,0 +1,13 @@
+{
+    "require": {
+        "altorouter/altorouter": "^1.2",
+        "benoclock/alto-dispatcher": "^1.0",
+        "symfony/var-dumper": "^4.2"
+    },
+
+    "autoload": {
+        "psr-4": {
+            "quotes\\" : "app/"
+        }
+    }
+}
