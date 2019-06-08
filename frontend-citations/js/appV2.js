@@ -2,9 +2,8 @@
 // Modification de Javascript natif en Jquery
 var app = {
 
-     currentQuoteIndex: 1,// Propriété "counter"
-     quoteElement: null,
-     authorElement: null,
+     currentQuoteIndex: null,
+     quoteCollection: null,
      formElement: null,
      formQuoteInput: null,
      formAuthorInput: null,
@@ -13,8 +12,6 @@ var app = {
      init: function() {
 
           // Initialisation des propriétés
-          app.quoteElement = $('#quote');
-          app.authorElement = $('#author');
           app.formElement = $('#divAddQuote');
           app.formQuoteInput = $('#input-quote');
           app.formAuthorInput = $('#input-author');
@@ -43,9 +40,6 @@ var app = {
           // Ajout event sur le bouton de navigation last
           $('#nav-last').on('click', app.handleClickOnLastButton);
 
-          // Méthode qui affiche la quote courante (app.currentQuoteIndex) au chargement du DOM
-          // app.displayCurrentQuote();
-
      },
 
      // Méthode qui récupère les citations au chargement de la page
@@ -58,20 +52,36 @@ var app = {
                dataType: 'json'
           });
 
-          getAllQuotesXHR.done(app.displayQuotes);
+          getAllQuotesXHR.done(app.getAjaxQuotes);
           getAllQuotesXHR.fail(app.displayError);
 
      },
 
      // Traitement des données reçues en Ajax (done)
-     displayQuotes: function(quoteCollection) {
+     getAjaxQuotes: function(quoteCollection) {
 
-          // TODO :
-          // 1 - Prendre le nb de citations reçues
-          // 2 - Générer un nb aléatoire avec comme maximum le nb de citations reçues et le renseigner danas app.currentQuoteIndex
-          console.log(quoteCollection);
-          app.quoteElement.text(quoteCollection[app.currentQuoteIndex].content);// Affiche la citation au chargement de la page
-          app.authorElement.text(quoteCollection[app.currentQuoteIndex].name);// Affiche le nom de l'auteur au chargement de la page
+          // on insère les données reçues dans une propriété pour qu'elle soit accessible dans tout le module
+          app.quoteCollection = quoteCollection;
+
+          // Nb maximum de citations reçues
+          var quoteMaxNumber = quoteCollection.length; // pas -1 pour bien avoir le choix de la dernière possibilité dans le Math.random
+
+          var randomNumber = Math.floor(Math.random() * (quoteMaxNumber));
+          
+          app.currentQuoteIndex = randomNumber;
+
+          app.displayQuoteAndAuthor(app.currentQuoteIndex);
+
+     },
+
+     // Affiche la citation et son auteur
+     displayQuoteAndAuthor: function(quote) {
+
+          var quoteElement = $('#quote');
+          var authorElement = $('#author');
+
+          quoteElement.text(app.quoteCollection[quote].content);
+          authorElement.text(app.quoteCollection[quote].name);
      },
 
      // Méthode gérant le click pour afficher le formulaire d'ajout
@@ -102,58 +112,56 @@ var app = {
                $('#errorMsg').removeClass('d-none');
           } else {
                // insère les valeurs dans le tableau quotes
-               quotes.push({quote: app.formQuoteInput.val(), author: app.formAuthorInput.val()});
+               app.quoteCollection.push({quote: app.formQuoteInput.val(), author: app.formAuthorInput.val()});
                
                // on ferme la fenêtre d'ajout de citation
                app.handleHideForm();
           }
      
      },
- 
-     // Méthode permettant de modifier le DOM pour afficher la quote "courante"
-     // displayCurrentQuote: function() {
-     //      app.quoteElement.text(quotes[app.currentQuoteIndex].quote);
-     // },
      
      // Méthode de gestion du click Next
      handleClickOnNextButton: function() {
-          
+
           // Si app.currentQuoteIndex est = au dernier index du tableau quotes
-          if(app.currentQuoteIndex === quotes.length - 1) {
+          if(app.currentQuoteIndex === app.quoteCollection.length - 1) {
                app.currentQuoteIndex = 0;
           } else {
                app.currentQuoteIndex ++;
           }
      
-          app.quoteElement.text(quotes[app.currentQuoteIndex].quote);
-          app.authorElement.text(quotes[app.currentQuoteIndex].author);
+          app.displayQuoteAndAuthor(app.currentQuoteIndex);
      },
      
      // Méthode de gestion du click previous
      handleClickOnPrevButton: function() {
           
           if(app.currentQuoteIndex === 0){
-               app.currentQuoteIndex = quotes.length -1;
+               app.currentQuoteIndex = app.quoteCollection.length -1;
           } else {
                app.currentQuoteIndex --;
           }
-     
-          app.quoteElement.text(quotes[app.currentQuoteIndex].quote);
-          app.authorElement.text(quotes[app.currentQuoteIndex].author);
+          
+          app.displayQuoteAndAuthor(app.currentQuoteIndex);
      },
  
      // Méthode de gestion du click première citation
      handleClickOnFirstButton: function() {
-          app.quoteElement.text(quotes[0].quote);
-          app.authorElement.text(quotes[0].author);
+
+          app.currentQuoteIndex = 0;
+
+          app.displayQuoteAndAuthor(app.currentQuoteIndex);
      },
+
      
      // Méthode de gestion du click dernière citation
      handleClickOnLastButton: function() {
-          var lastQuotes = quotes.length - 1;
-          app.quoteElement.text(quotes[lastQuotes].quote);
-          app.authorElement.text(quotes[lastQuotes].author);
+
+          app.currentQuoteIndex = app.quoteCollection.length - 1;
+
+          app.displayQuoteAndAuthor(app.currentQuoteIndex);
      },
+
 
      // Affichage des erreurs de retour Ajax (fail)
      displayError: function() {
