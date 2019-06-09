@@ -1,14 +1,14 @@
 # Citations
 
-Ceci est un site de citations basées sur celui de http://www.excusesdedev.com/
+Ceci est un site de citations basé sur celui de http://www.excusesdedev.com/
 
-Au départ, il s'agissait d'un exercice concernant l'apprentissage de Jquery que j'ai repris ensuite afin de l'améliorer.
+Au départ, il s'agissait d'un exercice concernant l'apprentissage de Jquery que j'ai repris ensuite afin d'ajouter le traitement des données côté Backend.
 
 Côté Front :
  - Utilisation de html5, Bootstrap et Jquery.
- - Récupérer les citations stockées dans une base de donnée (en Ajax) et les afficher au chargement de la page
+ - Récupération des citations stockées dans une base de donnée (en Ajax) et les afficher au chargement de la page
  - Gestion de l'affichage du formulaire
- - Gestion de l'envoi du formulaire si l'un ou les 2 champs sont vides.
+ - Gestion de l'envoi du formulaire si l'un des 2 ou les 2 champs sont vides.
  - Vider les champs à chaque fois que l'utilisateur souhaite saisir une nouvelle citation.
  - Affichage de la liste complète des citations (en Ajax) après en avoir saisi une nouvelle (en incluant la nouvelle)
 
