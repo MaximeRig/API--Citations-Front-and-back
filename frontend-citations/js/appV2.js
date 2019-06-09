@@ -70,6 +70,7 @@ var app = {
           
           app.currentQuoteIndex = randomNumber;
 
+          // Affichage des citations
           app.displayQuoteAndAuthor(app.currentQuoteIndex);
 
      },
@@ -103,17 +104,32 @@ var app = {
           event.preventDefault();
 
           var target = $(event.target);
-          // console.log(target);
      
           app.formQuoteInput = $(target).find('#input-quote');
           app.formAuthorInput = $(target).find('#input-author');
+
+          var formQuoteInputData = app.formQuoteInput.val();
+          var formAuthorInputData = app.formAuthorInput.val();
      
-          if(app.formQuoteInput.val() === '' || app.formAuthorInput.val() === '') {
+          if(formQuoteInputData === '' || formAuthorInputData === '') {
                $('#errorMsg').removeClass('d-none');
           } else {
-               // insère les valeurs dans le tableau quotes
-               app.quoteCollection.push({quote: app.formQuoteInput.val(), author: app.formAuthorInput.val()});
-               
+
+               // To DO : Faire une requête Ajax pour envoyer la nouvelle entrée
+               // Requête Ajax
+               var sendNewQuoteAndAuthorAjax = $.ajax({
+                    method: 'POST',
+                    url: 'http://localhost/RevisionPerso/Citations/backend-citations/public/quotes',
+                    data: {
+                         'quote' : formQuoteInputData,
+                         'author' : formAuthorInputData
+                    },
+                    dataType: 'json'
+               });
+
+               sendNewQuoteAndAuthorAjax.done(app.getAjaxQuotes);
+               sendNewQuoteAndAuthorAjax.fail(app.displayError);
+ 
                // on ferme la fenêtre d'ajout de citation
                app.handleHideForm();
           }
