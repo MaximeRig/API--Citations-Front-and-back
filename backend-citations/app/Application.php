@@ -39,7 +39,7 @@ class Application
         // $this->router->map('GET', '/test', 'quotes\\Controllers\\MainController::test', 'test');
 
         $this->router->map('GET', '/', 'quotes\\Controllers\\MainController::getAllQuotes', 'getAllQuotes');
-        $this->router->map('POST', '/quotes', 'quotes\\Controllers\\QuotesController::quotes', 'quotes');
+        $this->router->map('POST', '/quote', 'quotes\\Controllers\\QuoteController::newQuote', 'newQuote');
 
     }
 
