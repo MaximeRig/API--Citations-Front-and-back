@@ -35,9 +35,6 @@ class Application
      */
     public function defineRoutes() {
 
-        // Routes de test
-        // $this->router->map('GET', '/test', 'quotes\\Controllers\\MainController::test', 'test');
-
         $this->router->map('GET', '/', 'quotes\\Controllers\\MainController::getAllQuotes', 'getAllQuotes');
         $this->router->map('POST', '/quote/add', 'quotes\\Controllers\\QuoteController::addQuote', 'newQuote');
 

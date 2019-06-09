@@ -26,13 +26,15 @@ class QuoteController extends CoreController
             $insertStatus = $newQuote->insert();
         }
 
-        // Si retour = true alors on envoie la réponse
-        // if ($insertStatus) {
-        //     $newQuoteCollection = $newQuote->findAll();
-        //     $this->showJson($newQuoteCollection);
-        // } else {
-        //     http_response_code(500);
-        // }
+        //Si retour = true alors on envoie la réponse
+        if ($insertStatus) {
+            // On va chercher toutes les citations pour les envoyer vers le client
+            $newQuoteCollection = $newQuote->findAll();
+
+            $this->showJson($newQuoteCollection);
+        } else {
+            http_response_code(500);
+        }
 
       }
 

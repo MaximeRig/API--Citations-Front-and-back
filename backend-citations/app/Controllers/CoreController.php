@@ -5,7 +5,7 @@ namespace quotes\Controllers;
 class CoreController
 {
 
-    protected function show($viewName, $viewVar = null)
+    protected function show($viewName)
     {
         require __DIR__.'/../Views/' . $viewName . '.tpl.php';
     }
@@ -19,7 +19,7 @@ class CoreController
         header('Content-type: application/json');
 
         //On affiche la réponse en json
-        // echo json_encode($data);
+        echo json_encode($data);
     }
 
 }

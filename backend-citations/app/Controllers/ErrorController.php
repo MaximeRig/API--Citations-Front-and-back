@@ -7,7 +7,10 @@ class ErrorController extends CoreController
 
     public function error404()
     {
-        $this->show('error404', 0);
+        $errorMsg = 'La page demandée n\'a pas été trouvée.';
+
+        $this->showJson($errorMsg);
+
     }
 
 }

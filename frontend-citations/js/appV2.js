@@ -7,7 +7,7 @@ var app = {
      formElement: null,
      formQuoteInput: null,
      formAuthorInput: null,
-     apiPath: 'http://localhost/RevisionPerso/siteDeCitations/backend-citations/public/',
+     apiPath: 'http://localhost/RevisionPerso/Citations/backend-citations/public/',
 
      init: function() {
 
@@ -119,7 +119,7 @@ var app = {
                // Requête Ajax
                var sendNewQuoteAndAuthorAjax = $.ajax({
                     method: 'POST',
-                    url: 'http://localhost/RevisionPerso/Citations/backend-citations/public/quote/add',
+                    url: app.apiPath + 'quote/add',
                     data: {
                          'quote' : formQuoteInputData,
                          'author' : formAuthorInputData
