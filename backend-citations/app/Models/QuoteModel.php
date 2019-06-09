@@ -33,6 +33,40 @@ class QuoteModel extends CoreModel implements jsonSerializable
     }
 
     /**
+     * Insert new Quote in table
+     * @return booleen
+     */
+    public function insert()
+    {
+        // Requête SQL
+        $sql = '
+            INSERT INTO `quote`(name, content)
+            VALUES (:name, :content);
+        ';
+
+        $Dbdata = new Database();
+        $pdoStatement = $Dbdata->pdo->prepare($sql);
+
+        $pdoStatement->bindValue(':name', $this->getName(), PDO::PARAM_STR);
+        $pdoStatement->bindValue(':content', $this->getContent(), PDO::PARAM_STR);
+
+        $pdoStatement->execute();
+
+        // On récupère le nb de ligne affecté par la modification pour vérification
+        $affectedRow = $pdoStatement->rowCount();
+
+        // On teste si le nb de ligne affecté = 1, et on renvoie un statu de réponse
+        if($affectedRow === 1) {
+            $status = true;
+        } else {
+            $status = false;
+        }
+
+        return $status;
+
+    }
+
+    /**
      * Get the value of content
      */ 
     public function getContent()
@@ -67,7 +101,7 @@ class QuoteModel extends CoreModel implements jsonSerializable
      */ 
     public function setName($name)
     {
-        $this->author_id = $name;
+        $this->name = $name;
 
         return $this;
     }

@@ -1,3 +1,3 @@
 <?php
 
-echo 'Test-HOME';
+dump($viewVar);

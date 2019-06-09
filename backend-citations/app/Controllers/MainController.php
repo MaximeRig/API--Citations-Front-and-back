@@ -9,9 +9,9 @@ class MainController extends CoreController
 {
     public function getAllQuotes(){
         
-        // test d'affichage de toutes les quotes
         // on instancie la class QuoteModel
         $quote = new QuoteModel();
+
         $quoteCollection = $quote->findAll();
 
         // On convertit le tableau au format Json

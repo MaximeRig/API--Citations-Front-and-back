@@ -119,7 +119,7 @@ var app = {
                // Requête Ajax
                var sendNewQuoteAndAuthorAjax = $.ajax({
                     method: 'POST',
-                    url: 'http://localhost/RevisionPerso/Citations/backend-citations/public/quote',
+                    url: 'http://localhost/RevisionPerso/Citations/backend-citations/public/quote/add',
                     data: {
                          'quote' : formQuoteInputData,
                          'author' : formAuthorInputData

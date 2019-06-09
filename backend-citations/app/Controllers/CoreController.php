@@ -5,7 +5,7 @@ namespace quotes\Controllers;
 class CoreController
 {
 
-    protected function show($viewName)
+    protected function show($viewName, $viewVar = null)
     {
         require __DIR__.'/../Views/' . $viewName . '.tpl.php';
     }
